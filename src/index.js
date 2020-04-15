@@ -7,48 +7,22 @@ import storage from 'redux-persist/lib/storage';
 import { PersistGate } from 'redux-persist/integration/react';
 import './index.css';
 import App from './App';
+import MemoStore, { memoReducer } from './memo/Store';
 import * as serviceWorker from './serviceWorker';
 
-let state_value = {
-  counter: 0,
-  message: "COUNTER"
-}
-
-function counter(state = state_value, action) {
-  switch (action.type) {
-    case 'INCREMENT':
-      return {
-        counter: state.counter + 1,
-        message: 'INCREMENT'
-      };
-    case 'DECREMENT':
-      return {
-        counter: state.counter - 1,
-        message: 'DECREMENT'
-      };
-    case 'RESET':
-      return {
-        counter: 0,
-        message: 'RESET'
-      };
-    default:
-      return state;
-  }
-}
-
 const persistConfig = {
-  key: 'root',
+  key: 'memo',
   storage,
-}
+};
 
-const persistedReducer = persistReducer(persistConfig, counter)
+const persistedReducer = persistReducer(persistConfig, memoReducer);
 
-let store = createStore(persistedReducer)
-let pastore = persistStore(store)
+let store = createStore(persistedReducer);
+let persistor = persistStore(store);
 
 ReactDOM.render(
   <Provider store={store}>
-    <PersistGate loading={<p>loading...</p>} persistor={pastore}>
+    <PersistGate loading={<p>loading...</p>} persistor={persistor}>
       <App />
     </PersistGate>
   </Provider>,
@@ -59,3 +33,5 @@ ReactDOM.render(
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: https://bit.ly/CRA-PWA
 serviceWorker.unregister();
+
+export default persistor;
