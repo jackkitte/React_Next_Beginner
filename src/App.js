@@ -1,36 +1,31 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import './App.css';
-import Memo from './memo/Memo';
-import AddForm from './memo/AddForm';
-import FindForm from './memo/FindForm';
-import DelForm from './memo/DelForm';
-import PersistForm from './memo/PersistForm';
+import Sampledata from './fire/Sampledata';
+import firebase from 'firebase';
 
+var config = {
+  apiKey: "AIzaSyBhv8u5jybdvqpIhtmlhd2XoJp4FYzOSTY",
+  authDomain: "react-beginner-2c891.firebaseapp.com",
+  databaseURL: "https://react-beginner-2c891.firebaseio.com",
+  projectId: "react-beginner-2c891",
+  storageBucket: "react-beginner-2c891.appspot.com",
+  messagingSenderId: "363290921869",
+  appId: "1:363290921869:web:6bf6f5c39eb621d7280bc4",
+  measurementId: "G-NZKRMGST8V"
+}
+
+firebase.initializeApp(config);
 class App extends Component {
-  td = {
-    width: "250px"
-  }
-
-  constructor(props) {
-    super(props);
-  }
 
   render() {
     return (
       <div>
         <h1>Memo</h1>
-        <AddForm />
-        <hr />
-        <table><tbody><tr>
-          <td style={this.td}><FindForm /></td>
-          <td style={this.td}><DelForm /></td>
-          <td style={this.td}><PersistForm /></td>
-        </tr></tbody></table>
-        <Memo />
+        <h2>Sample data.</h2>
+        <Sampledata />
       </div>
     );
   }
 }
 
-export default connect()(App);
+export default App;

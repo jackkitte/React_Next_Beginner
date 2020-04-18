@@ -6,8 +6,22 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+th {
+  font-size: 14pt;
+  text-align: left;
+  padding: 5px 20px;
+  margin: 0px;
+  border-bottom: 1px solid gray;
+}
+td {
+  font-size: 14pt;
+  font-weight: plain;
+  text-align: left;
+  padding: 5px 20px;
+  margin: 0px;
+  border-bottom: 1px solid gray;
 }
